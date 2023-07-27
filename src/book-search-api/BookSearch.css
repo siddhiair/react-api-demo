@@ -1,0 +1,11 @@
+.form-section{
+    background: #dae9ef;
+    padding: 80px 0;;
+}
+.form-wrap{
+    max-width: 600px;
+    margin: auto;
+}
+.form-wrap .form-control{
+	height: 45px;
+}

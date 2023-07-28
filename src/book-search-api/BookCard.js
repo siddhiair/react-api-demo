@@ -1,14 +1,11 @@
 import './BookCard.css';
-import { AiFillStar, AiOutlineStar } from "react-icons/ai";
+import { AiFillStar } from "react-icons/ai";
+import { BiSolidBookAlt } from "react-icons/bi";
+import { MdFavorite } from "react-icons/md";
 
 const BookCard = (props) => {
 	
-	const {title,author_name,currently_reading_count,already_read_count,isbn,first_publish_year,number_of_pages_median,ratings_average,ratings_count,want_to_read_count} = props.data;
-	let rating = null;
-	if(ratings_average && ratings_average>0){
-		rating = ratings_average/5*100;
-	}
-	console.log(props.data)
+	const {title,author_name,currently_reading_count,isbn,first_publish_year,number_of_pages_median,ratings_average,ratings_count,want_to_read_count} = props.data;
 	return(
 		<div className="list-col">
 			<div className="bookcard sm-flex">
@@ -18,28 +15,38 @@ const BookCard = (props) => {
 					}
 				</div>
 				<div className='content-wrap'>
-					<h3>{title}</h3>
-					<div>Published in: {first_publish_year}</div>
-					<div className=""><strong>Author: </strong> {author_name}</div>
-					<div className=""><strong>Currently reading: </strong>{currently_reading_count}</div>
+					<h3 className='m0 book-title'>{title}</h3>
+					<div className='publish-year'>(Published in: {first_publish_year})</div>
+					<div className="mt1"><strong>Author: </strong> {author_name}</div>
+					{currently_reading_count>0 &&
+						<div className=""><strong>Currently reading: </strong>{currently_reading_count}</div>
+					}
 					
-					{rating &&
-						<div className=""><strong>Avg. Rating: </strong>
-							<div class="rating">
-								<div className="rating-filled" style={{width: `${rating}%`}}>
-									<AiFillStar /><AiFillStar /><AiFillStar /><AiFillStar /><AiFillStar />
-								</div>
-								<div className='rating-empty'>
-									<AiOutlineStar /><AiOutlineStar /><AiOutlineStar /><AiOutlineStar /><AiOutlineStar />
-								</div>
+					<div className='flex book-meta-wrap'>
+						{(ratings_average && ratings_average>0) &&
+							<div className="book-meta">
+								<AiFillStar />
+								<span>{ratings_average.toFixed(1)} ({ratings_count} Reviews)</span>
 							</div>
-							{`${ratings_average.toFixed(1)} (${ratings_count} Reviews)`}
-						</div>
-					} 
+						} 
+						{(number_of_pages_median && number_of_pages_median>0) &&
+							<div className='book-meta'>
+								<BiSolidBookAlt />
+								<span>{number_of_pages_median} Pages</span>
+							</div>
+						}
 
-					{isbn && isbn.length>0 &&
+						{(want_to_read_count && want_to_read_count>0) &&
+							<div className='book-meta'>
+								<MdFavorite />
+								<span>{want_to_read_count} Want to read</span>
+							</div>	
+						}
+					</div>
+
+					{(isbn && isbn.length>0) &&
 						<div className='mt2'>
-							<a href={`https://openlibrary.org/isbn/${isbn[0]}`} className='btn btn-primary' target='_blank' rel='noreferer'>View Details</a>
+							<a href={`https://openlibrary.org/isbn/${isbn[0]}`} className='btn btn-primary' target='_blank' rel="noreferrer">View Details</a>
 						</div>
 					}
 				</div>

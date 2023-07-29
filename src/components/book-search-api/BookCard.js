@@ -23,25 +23,25 @@ const BookCard = (props) => {
 					}
 					
 					<div className='flex book-meta-wrap'>
-						{(ratings_average && ratings_average>0) &&
+						{(ratings_average!==null && ratings_average>0) &&(
 							<div className="book-meta">
 								<AiFillStar />
 								<span>{ratings_average.toFixed(1)} ({ratings_count} Reviews)</span>
 							</div>
-						} 
-						{(number_of_pages_median && number_of_pages_median>0) &&
+						)} 
+						{(number_of_pages_median!==null && number_of_pages_median>0) && (
 							<div className='book-meta'>
 								<BiSolidBookAlt />
 								<span>{number_of_pages_median} Pages</span>
 							</div>
-						}
+						)}
 
-						{(want_to_read_count && want_to_read_count>0) &&
+						{(want_to_read_count!==null && want_to_read_count>0) && (
 							<div className='book-meta'>
 								<MdFavorite />
 								<span>{want_to_read_count} Want to read</span>
 							</div>	
-						}
+						)}
 					</div>
 
 					{(isbn && isbn.length>0) &&

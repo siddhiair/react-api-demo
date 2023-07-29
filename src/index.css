@@ -12,8 +12,17 @@ body {
   background: #dae9ef;
   min-height: 100vh;
 }
-*{
+*,*::before, *::after{
   box-sizing: border-box;
+}
+:focus-visible{
+  outline: 0;
+}
+a,button,input[type='submit'],input[type='button']{
+  transition: all .3s;
+}
+a:hover{
+  text-decoration: none;
 }
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
@@ -28,6 +37,9 @@ code {
   color: #444;
   padding: 12px 0;
   margin-left: 30px;
+}
+.navlink.active{
+  font-weight: 600;
 }
 .loader{
   position: fixed;

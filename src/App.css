@@ -5,6 +5,17 @@
 .App-header{
   background: #fff;
 }
+.form-wrap .form-control{
+	height: 45px;
+  border:none;
+  width: 100%;
+}
+.form-control:focus,.form-control:focus-visible{
+    outline: 0;
+    border:0;
+    box-shadow: none;
+    box-shadow: inset 0 0 0 1px var(--primary);
+}
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;

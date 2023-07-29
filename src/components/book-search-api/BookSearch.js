@@ -1,10 +1,11 @@
 import { useState } from 'react';
 import './BookSearch.css'; 
 import BookCard from './BookCard';
+import Loader from '../../components/common/Loader';
 
 const BookSearch  = () => {
 	const [inputVal, setInputVal] = useState("");
-	const [loading,setLoading] = useState(false)
+	const [loading,setLoading] = useState(false);
 	const[books, setBooks] =  useState([]);
 
 	const handleInputChange = (e) => {
@@ -35,20 +36,11 @@ const BookSearch  = () => {
   return(
 		<>
 			{loading===true && 
-				<div className='loader'>
-					<div className='loader-content'>
-						<svg version="1.1" id="L9" xmlns="http://www.w3.org/2000/svg" xmlnsXLink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 100 100" enableBackground="new 0 0 0 0" xmlSpace="preserve">
-							<path d="M73,50c0-12.7-10.3-23-23-23S27,37.3,27,50 M30.9,50c0-10.5,8.5-19.1,19.1-19.1S69.1,39.5,69.1,50">
-								<animateTransform attributeName="transform" attributeType="XML" type="rotate" dur="1s" from="0 50 50" to="360 50 50" repeatCount="indefinite"></animateTransform>
-							</path>
-						</svg>
-						<span>Fetching data...</span>
-					</div>
-				</div>
+				<Loader />
 			}
 			<section className="form-section">
 				<div className='container'>
-					<div className="form-wrap">
+					<div className="form-wrap book-search-form">
 						<form onSubmit={(e)=>handleSubmit(e,1)} autoComplete='off'>
 							<div className="flex">
 								<input
